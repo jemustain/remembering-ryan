@@ -1,0 +1,24 @@
+{
+  "name": "Remembering Ryan",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "forwardPorts": [3000],
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "davidanson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "markdown.preview.fontSize": 16,
+        "markdown.preview.lineHeight": 1.6
+      }
+    }
+  }
+}

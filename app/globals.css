@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Child-friendly styling */
+@layer base {
+  body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    background-color: #f9fafb;
+    color: #1f2937;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #2563eb;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+
+  ul, ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  blockquote {
+    border-left: 4px solid #93c5fd;
+    padding-left: 1rem;
+    font-style: italic;
+    color: #1d4ed8;
+    margin: 1.5rem 0;
+    background-color: #eff6ff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  strong {
+    font-weight: bold;
+    color: #1e40af;
+  }
+
+  em {
+    font-style: italic;
+    color: #374151;
+  }
+}
+
+/* Component styling */
+@layer components {
+  .story-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+  }
+
+  .nav-link:hover {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+  }
+
+  .story-card {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e5e7eb;
+    margin-bottom: 2rem;
+  }
+
+  .story-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #93c5fd;
+  }
+
+  .memorial-section {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
