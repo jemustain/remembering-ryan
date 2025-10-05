@@ -257,7 +257,7 @@ When Ryan was three, his favorite things were:
 
 ![Ryan with his family](/images/ryan-family.jpg)
 
-Ryan always gave the biggest hugs and had the silliest laugh. He would giggle when his daddy tickled his toes!
+Ryan always gave the biggest hugs and had the silliest laugh. He would giggle when Ryan tickled his toes!
 
 > "I love you to the moon and back!" Ryan would say every night before bed.
 

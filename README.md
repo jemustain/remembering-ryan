@@ -142,7 +142,7 @@ npm run lint     # Run linting (when added)
 
 ## About This Project
 
-This website was created with love to preserve Ryan's memory and provide his son with stories about his father. The site is designed to be:
+This website was created with love to preserve Ryan's memory and provide his son with stories about Ryan. The site is designed to be:
 
 - Easy to maintain and add content
 - Child-friendly and accessible
