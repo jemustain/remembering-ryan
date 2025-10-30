@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Allura:wght@400&display=swap" rel="stylesheet">
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        svg {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        .font-display {
+            font-family: 'Allura', cursive;
+            font-size: 48px;
+            margin: 20px;
+            color: #166534;
+        }
+    </style>
+</head>
+<body>
+    <h2>Allura Font to SVG Converter</h2>
+    
+    <div class="font-display">RR</div>
+    
+    <button onclick="generateSVG()">Generate SVG from Canvas</button>
+    
+    <canvas id="canvas" width="200" height="100"></canvas>
+    
+    <div id="svg-output"></div>
+    
+    <h3>Test SVGs:</h3>
+    
+    <!-- Method 1: Direct text with proper fallbacks -->
+    <svg width="100" height="50" viewBox="0 0 100 50">
+        <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#166534"/>
+                <stop offset="100%" style="stop-color:#facc15"/>
+            </linearGradient>
+        </defs>
+        <text x="50" y="35" text-anchor="middle" 
+              font-family="Allura, Brush Script MT, cursive" 
+              font-size="32" 
+              fill="url(#grad1)">RR</text>
+    </svg>
+    
+    <!-- Method 2: Using system fallbacks -->
+    <svg width="100" height="50" viewBox="0 0 100 50">
+        <defs>
+            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#166534"/>
+                <stop offset="100%" style="stop-color:#facc15"/>
+            </linearGradient>
+        </defs>
+        <text x="50" y="35" text-anchor="middle" 
+              font-family="Brush Script MT, Lucida Handwriting, cursive" 
+              font-size="32" 
+              font-style="italic"
+              fill="url(#grad2)">RR</text>
+    </svg>
+    
+    <!-- Method 3: Simple elegant approach -->
+    <svg width="100" height="50" viewBox="0 0 100 50">
+        <defs>
+            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#166534"/>
+                <stop offset="100%" style="stop-color:#facc15"/>
+            </linearGradient>
+        </defs>
+        <text x="50" y="35" text-anchor="middle" 
+              font-family="Times, serif" 
+              font-size="36" 
+              font-style="italic"
+              font-weight="bold"
+              fill="url(#grad3)">RR</text>
+    </svg>
+    
+    <script>
+        function renderCanvas() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Set font
+            ctx.font = "48px 'Allura', cursive";
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            gradient.addColorStop(0, '#166534');
+            gradient.addColorStop(1, '#facc15');
+            ctx.fillStyle = gradient;
+            
+            // Draw text
+            ctx.fillText('RR', canvas.width/2, canvas.height/2);
+        }
+        
+        function generateSVG() {
+            // Wait for font to load
+            document.fonts.ready.then(() => {
+                renderCanvas();
+                
+                // Try to extract paths (this is complex and may not work in all browsers)
+                const canvas = document.getElementById('canvas');
+                const dataURL = canvas.toDataURL();
+                
+                document.getElementById('svg-output').innerHTML = `
+                    <h4>Canvas Data URL (could be converted to SVG):</h4>
+                    <img src="${dataURL}" style="border: 1px solid #ccc;">
+                    <p>Canvas rendered successfully. For best results, you might want to use a specialized tool to convert the Allura font to SVG paths.</p>
+                `;
+            });
+        }
+        
+        // Initial render
+        document.fonts.ready.then(renderCanvas);
+    </script>
+</body>
+</html>
