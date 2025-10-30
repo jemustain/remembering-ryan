@@ -72,12 +72,12 @@
   }
 
   blockquote {
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid #166534;
     padding-left: 1.5rem;
     font-style: italic;
-    color: #1e40af;
+    color: #14532d;
     margin: 2rem 0;
-    background-color: #f8fafc;
+    background-color: #fefce8;
     padding: 1.5rem;
     border-radius: 0.5rem;
     font-family: 'Crimson Text', Georgia, serif;
@@ -112,13 +112,13 @@
   }
 
   .nav-link:hover {
-    background-color: #f1f5f9;
-    color: #1e293b;
+    background-color: #fefce8;
+    color: #166534;
   }
 
   .nav-link.active {
-    background-color: #e2e8f0;
-    color: #1e293b;
+    background-color: #dcfce7;
+    color: #166534;
   }
 
   .story-card {
@@ -133,7 +133,7 @@
 
   .story-card:hover {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border-color: #cbd5e1;
+    border-color: #facc15;
     transform: translateY(-1px);
   }
 

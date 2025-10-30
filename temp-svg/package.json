@@ -1,0 +1,9 @@
+{
+  "name": "font-to-svg",
+  "version": "1.0.0",
+  "description": "Convert text to SVG paths",
+  "main": "convert.js",
+  "dependencies": {
+    "opentype.js": "^1.3.4"
+  }
+}

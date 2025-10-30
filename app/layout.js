@@ -3,6 +3,11 @@ import './globals.css'
 export const metadata = {
   title: 'Remembering Ryan - Memorial Website',
   description: 'A memorial website for Ryan William Alf featuring stories for his son',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -10,12 +15,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet" />
+      </head>
       <body className="bg-gray-50 text-gray-900 antialiased">
         <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center">
-                <a href="/" className="text-xl font-semibold text-gray-900 hover:text-gray-700 transition-colors">
+                <a href="/" className="flex items-center text-xl font-semibold text-gray-900 hover:text-gray-700 transition-colors">
+                  <img src="/rr-icon.svg" alt="RR" className="w-12 h-12 mr-3" />
                   Remembering Ryan
                 </a>
                 <span className="ml-4 text-sm text-gray-500 hidden md:block font-medium">
