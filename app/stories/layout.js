@@ -1,10 +1,15 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import FamilyOnly, { isFamilyStory } from '../../components/FamilyOnly'
 
 export default function StoriesLayout({ children }) {
   const pathname = usePathname()
   const isStoriesIndex = pathname === '/stories'
+  
+  // Extract story slug from pathname (e.g., /stories/08-girlfriend-at-work -> 08-girlfriend-at-work)
+  const storySlug = !isStoriesIndex ? pathname.split('/stories/')[1] : null
+  const isProtectedStory = storySlug && isFamilyStory(storySlug)
 
   return (
     <div>
@@ -23,8 +28,14 @@ export default function StoriesLayout({ children }) {
         </div>
       )}
       
-      {/* Story content */}
-      {children}
+      {/* Story content - automatically wrap family stories */}
+      {isProtectedStory ? (
+        <FamilyOnly storySlug={storySlug}>
+          {children}
+        </FamilyOnly>
+      ) : (
+        children
+      )}
     </div>
   )
 }
