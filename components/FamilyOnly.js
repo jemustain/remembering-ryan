@@ -79,12 +79,25 @@ export default function FamilyOnly({ children, storySlug }) {
 
 // Helper function to check if a story requires family access
 export function isFamilyStory(storySlug) {
-  // You can configure which stories are family-only
+  // Configure which stories are family-only here
   const familyStories = [
     '08-girlfriend-at-work',
     '09-the-baby',
+    '10-picture-day',
+    '11-tortoises',
     '12-gone-for-the-weekend',
-    '14-hot-water-heater'
+    '13-puppies',
+    '14-hot-water-heater',
+    '15-telling-dad',
+    '16-carpet-cleaning',
+    '17-screen-door',
+    '18-the-rings',
+    '19-plumbing-issue',
+    '20-bathroom-repairs',
+    '21-easter-eggs',
+    '22-birthday',
+    '23-20-week-ultrasound',
+    '24-the-death'
   ]
   
   return familyStories.includes(storySlug)

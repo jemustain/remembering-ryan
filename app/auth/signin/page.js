@@ -32,7 +32,7 @@ export default function SignIn() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="mx-auto h-12 w-12 flex items-center justify-center">
-            <img src="/rr-icon.svg" alt="RR" className="h-12 w-12" />
+            <img src="/new-r-logo.png" alt="R" className="h-12 w-12" />
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Family Access
