@@ -2,7 +2,36 @@
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { isFamilyStory } from '../../components/FamilyOnly'
+
+// Featured image for each story
+const storyImages = {
+  '01-first-date': '/images/stories/01-first-date/lake.jpg',
+  '02-second-date': '/images/stories/02-second-date/dogs-playing.jpg',
+  '03-fixing-the-car-fuse': '/images/stories/03-fixing-the-car-fuse/car-fuse.jpg',
+  '04-dinner-surprise': '/images/stories/04-dinner-surprise/cooking.jpg',
+  '05-wood-stove': '/images/stories/05-wood-stove/wood-stove.jpg',
+  '06-balto-fleas': '/images/stories/06-balto-fleas/dog-bath.jpg',
+  '07-grammys-christmas': '/images/stories/07-grammys-christmas/christmas-tree.jpg',
+  '08-girlfriend-at-work': '/images/stories/08-girlfriend-at-work/workplace.jpg',
+  '09-the-baby': '/images/stories/09-the-baby/announcement.jpg',
+  '10-picture-day': '/images/stories/10-picture-day/photo-session.jpg',
+  '11-tortoises': '/images/stories/11-tortoises/tortoise.jpg',
+  '12-gone-for-the-weekend': '/images/stories/12-gone-for-the-weekend/airport.jpg',
+  '13-puppies': '/images/stories/13-puppies/puppies.jpg',
+  '14-hot-water-heater': '/images/stories/14-hot-water-heater/water-heater.jpg',
+  '15-telling-dad': '/images/stories/15-telling-dad/family-call.jpg',
+  '16-carpet-cleaning': '/images/stories/16-carpet-cleaning/carpet-cleaner.jpg',
+  '17-screen-door': '/images/stories/17-screen-door/screen-door.jpg',
+  '18-the-rings': '/images/stories/18-the-rings/rings.jpg',
+  '19-plumbing-issue': '/images/stories/19-plumbing-issue/plumbing.jpg',
+  '20-bathroom-repairs': '/images/stories/20-bathroom-repairs/bathroom-repair.jpg',
+  '21-easter-eggs': '/images/stories/21-easter-eggs/easter-eggs.jpg',
+  '22-birthday': '/images/stories/22-birthday/purple-flowers.jpg',
+  '23-20-week-ultrasound': '/images/stories/23-20-week-ultrasound/ultrasound.jpg',
+  '24-the-death': '/images/stories/24-the-death/stars.jpg',
+}
 
 // Background image mapping for each story - Pine Green + Pale Gold theme
 const storyBackgrounds = {
@@ -87,17 +116,37 @@ export default function StoriesPage() {
                 className="block group"
               >
                 <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-forest-200 h-full overflow-hidden">
-                  {/* Background Image Header */}
-                  <div 
-                    className="h-32 w-full relative"
-                    style={{ 
-                      background: storyBackgrounds[story.slug] || 'linear-gradient(135deg, #16a34a 0%, #facc15 100%)' 
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                  {/* Story Image Header */}
+                  <div className="h-48 w-full relative overflow-hidden bg-gray-100">
+                    {storyImages[story.slug] ? (
+                      <>
+                        <Image
+                          src={storyImages[story.slug]}
+                          alt={story.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        {/* Dark overlay for number visibility */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40"></div>
+                      </>
+                    ) : (
+                      <>
+                        {/* Fallback gradient if no image */}
+                        <div 
+                          className="absolute inset-0"
+                          style={{ 
+                            background: storyBackgrounds[story.slug] || 'linear-gradient(135deg, #16a34a 0%, #facc15 100%)' 
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                      </>
+                    )}
+                    
+                    {/* Story Number Overlay */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-white text-center">
-                        <div className="text-3xl font-bold opacity-90">
+                        <div className="text-3xl font-bold drop-shadow-lg">
                           {story.number.toString().padStart(2, '0')}
                         </div>
                       </div>
