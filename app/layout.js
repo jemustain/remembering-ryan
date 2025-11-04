@@ -6,11 +6,6 @@ import MobileMenu from '../components/MobileMenu'
 export const metadata = {
   title: 'Remembering Ryan - Memorial Website',
   description: 'A memorial website for Ryan William Alf featuring stories for his son',
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/new-r-logo.png',
-  },
 }
 
 export default function RootLayout({

@@ -15,24 +15,15 @@ export default function AuthButton() {
   }
 
   if (session) {
+    // Extract first name from full name
+    const firstName = session.user.name?.split(' ')[0] || session.user.name;
+    
     return (
-      <div className="flex items-center space-x-3">
-        <div className="flex items-center space-x-2">
-          {session.user.image && (
-            <img 
-              src={session.user.image} 
-              alt={session.user.name} 
-              className="w-8 h-8 rounded-full"
-            />
-          )}
-          <div className="hidden md:block">
-            <p className="text-sm font-medium text-gray-900">{session.user.name}</p>
-            <p className="text-xs text-gray-500">{session.user.role}</p>
-          </div>
-        </div>
+      <div className="flex items-center space-x-2 sm:space-x-3">
+        <span className="text-sm font-medium text-gray-700 whitespace-nowrap">Hi, {firstName}</span>
         <button
           onClick={() => signOut()}
-          className="bg-red-50 text-red-700 hover:bg-red-100 px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+          className="bg-red-50 text-red-700 hover:bg-red-100 px-2 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap"
         >
           Sign Out
         </button>
