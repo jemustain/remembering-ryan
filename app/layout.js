@@ -2,6 +2,7 @@ import './globals.css'
 import AuthProvider from '../components/AuthProvider'
 import AuthButton from '../components/AuthButton'
 import MobileMenu from '../components/MobileMenu'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata = {
   title: 'Remembering Ryan - Memorial Website',
@@ -58,6 +59,7 @@ export default function RootLayout({
             </div>
           </footer>
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   )

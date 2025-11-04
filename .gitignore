@@ -49,3 +49,6 @@ Thumbs.db
 # Backup files
 *.bak
 *.backup
+
+# Scripts with API keys
+scripts/generate-story-images.js
