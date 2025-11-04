@@ -1,9 +1,24 @@
 'use client'
 
 import { useSession, signIn, signOut } from 'next-auth/react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function AuthButton() {
   const { data: session, status } = useSession()
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false)
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   if (status === 'loading') {
     return (
@@ -19,14 +34,67 @@ export default function AuthButton() {
     const firstName = session.user.name?.split(' ')[0] || session.user.name;
     
     return (
-      <div className="flex items-center space-x-2 sm:space-x-3">
-        <span className="text-sm font-medium text-gray-700 whitespace-nowrap">Hi, {firstName}</span>
+      <div className="relative" ref={dropdownRef}>
+        {/* User info button with dropdown trigger */}
         <button
-          onClick={() => signOut()}
-          className="bg-red-50 text-red-700 hover:bg-red-100 px-2 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap"
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          className="flex items-center space-x-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors whitespace-nowrap"
         >
-          Sign Out
+          <div className="w-8 h-8 rounded-full bg-forest-100 flex items-center justify-center text-forest-700 font-semibold">
+            {firstName.charAt(0).toUpperCase()}
+          </div>
+          <span className="hidden sm:inline">Hi, {firstName}</span>
+          <svg 
+            className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
         </button>
+
+        {/* Dropdown Menu */}
+        {isDropdownOpen && (
+          <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+            <div className="px-4 py-3 border-b border-gray-100">
+              <p className="text-sm font-semibold text-gray-900">Account Information</p>
+            </div>
+            
+            <div className="px-4 py-3 space-y-3">
+              {/* Name */}
+              <div>
+                <label className="text-xs font-medium text-gray-500 uppercase tracking-wide">Name</label>
+                <p className="text-sm text-gray-900 mt-1">{session.user.name}</p>
+              </div>
+              
+              {/* Email */}
+              <div>
+                <label className="text-xs font-medium text-gray-500 uppercase tracking-wide">Email</label>
+                <p className="text-sm text-gray-900 mt-1 break-words">{session.user.email}</p>
+              </div>
+              
+              {/* Account Type */}
+              <div>
+                <label className="text-xs font-medium text-gray-500 uppercase tracking-wide">Account Type</label>
+                <div className="mt-1">
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-forest-100 text-forest-800">
+                    {session.user.role}
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="px-4 py-2 border-t border-gray-100 mt-2">
+              <button
+                onClick={() => signOut()}
+                className="w-full bg-red-50 text-red-700 hover:bg-red-100 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
