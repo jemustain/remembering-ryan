@@ -28,11 +28,17 @@ export default function StoriesLayout({ children }) {
         </div>
       )}
       
-      {/* Story content - automatically wrap family stories */}
-      {isProtectedStory ? (
-        <FamilyOnly storySlug={storySlug}>
-          {children}
-        </FamilyOnly>
+      {/* Story content - wrap individual stories in a container with visual distinction */}
+      {!isStoriesIndex ? (
+        <div className="story-container">
+          {isProtectedStory ? (
+            <FamilyOnly storySlug={storySlug}>
+              {children}
+            </FamilyOnly>
+          ) : (
+            children
+          )}
+        </div>
       ) : (
         children
       )}

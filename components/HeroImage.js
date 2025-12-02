@@ -4,23 +4,24 @@ import Image from 'next/image'
 
 export default function HeroImage({ src, alt }) {
   return (
-    <div className="relative w-full mb-12 -mt-8">
-      {/* Hero Image Container with better height */}
-      <div className="relative h-72 sm:h-80 md:h-96 w-full overflow-hidden rounded-2xl shadow-xl">
+    <div className="relative w-full -mx-4 sm:-mx-6 lg:-mx-8 mb-8">
+      {/* Hero Image Container - Full width with proper aspect ratio */}
+      <div className="relative h-64 sm:h-80 md:h-96 lg:h-[28rem] w-full overflow-hidden">
         <Image
           src={src}
           alt={alt}
           fill
           className="object-cover"
           priority={true}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 1200px"
+          sizes="100vw"
         />
-        {/* Subtle gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20"></div>
+        {/* Gradient overlay - darker at bottom for better fade */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
+        
+        {/* Strong fade at bottom to blend into content */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white via-white/95 to-transparent"></div>
       </div>
-      
-      {/* Bottom fade - creates smooth transition to content */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white via-white/90 to-transparent pointer-events-none"></div>
     </div>
   )
 }
+

@@ -52,3 +52,4 @@ Thumbs.db
 
 # Scripts with API keys
 scripts/generate-story-images.js
+.env*.local
