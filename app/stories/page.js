@@ -127,8 +127,6 @@ export default function StoriesPage() {
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
-                        {/* Dark overlay for number visibility */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40"></div>
                       </>
                     ) : (
                       <>
@@ -139,18 +137,8 @@ export default function StoriesPage() {
                             background: storyBackgrounds[story.slug] || 'linear-gradient(135deg, #16a34a 0%, #facc15 100%)' 
                           }}
                         />
-                        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
                       </>
                     )}
-                    
-                    {/* Story Number Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-3xl font-bold drop-shadow-lg">
-                          {story.number.toString().padStart(2, '0')}
-                        </div>
-                      </div>
-                    </div>
                     
                     {/* Lock Icon */}
                     {showLock && (
@@ -165,7 +153,7 @@ export default function StoriesPage() {
                   {/* Card Content */}
                   <div className="p-6">
                     <div className="flex flex-col h-full">
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center justify-between mb-2">
                         <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-forest-600 transition-colors flex-1">
                           {story.title}
                         </h2>
@@ -177,6 +165,24 @@ export default function StoriesPage() {
                           </div>
                         )}
                       </div>
+                      
+                      {/* Author and Reading Time */}
+                      <div className="flex flex-wrap items-center gap-2 text-gray-600 text-xs mb-4">
+                        <div className="flex items-center gap-1">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                          </svg>
+                          <span>By Julie</span>
+                        </div>
+                        <span className="text-gray-400">•</span>
+                        <div className="flex items-center gap-1">
+                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                          </svg>
+                          <span>{story.readingTime || '5'} min read</span>
+                        </div>
+                      </div>
+                      
                       <div className="flex-grow"></div>
                       <div className="flex items-center text-forest-600 font-medium group-hover:text-forest-700">
                         {showLock ? 'Sign In to Read' : 'Read Story'}

@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 # About This Website
 
 ## Purpose
@@ -8,6 +10,37 @@ The site serves two main purposes:
 
 1. **Memorial**: To honor Ryan's memory and provide a place where family and friends can remember and celebrate his life
 2. **Stories for Ryan's Son**: To create a collection of age-appropriate stories that help Ryan's son learn about Ryan as he grows up
+
+<h2 id="author">About the Author</h2>
+
+<div className="flex flex-col md:flex-row gap-8 items-start my-8 p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+  <div className="flex-shrink-0">
+    <Image 
+      src="/images/julie-author.jpg" 
+      alt="Julie, the author" 
+      width={200} 
+      height={200} 
+      className="rounded-lg shadow-md"
+    />
+  </div>
+  <div className="flex-1">
+    <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Julie</h3>
+    <div className="text-gray-700 dark:text-gray-300 mb-3">
+      Julie was Ryan's girlfriend and the mother of his son. She created these stories as a way to help their child 
+      know and remember the wonderful man Ryan was—his kind heart, his skill at fixing things, and his deep love for family.
+    </div>
+    <div className="text-gray-700 dark:text-gray-300 mb-3">
+      Each story is written from Julie's perspective, drawing from their time together—from their first date at Chipotle 
+      to the everyday moments that showed Ryan's caring nature. Through these stories, she preserves the memories of 
+      Ryan's green F350 truck, his dog Balto, their adventures together, and most importantly, the love that created 
+      their family.
+    </div>
+    <div className="text-gray-700 dark:text-gray-300">
+      Julie writes these stories not just to remember Ryan, but to ensure their son grows up knowing his father's 
+      legacy of kindness, hard work, and unconditional love.
+    </div>
+  </div>
+</div>
 
 ## Why Stories?
 
