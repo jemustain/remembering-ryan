@@ -5,7 +5,7 @@
 
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../../../auth/[...nextauth]/route'
+import { authOptions } from '../../auth/[...nextauth]/route'
 import { getNextStoryNumber } from '../../../../lib/github/getNextStoryNumber'
 
 export async function GET(request) {
