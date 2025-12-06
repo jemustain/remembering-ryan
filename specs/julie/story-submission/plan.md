@@ -16,7 +16,7 @@ Implement a web form that allows authenticated FAMILY and ADMIN users to submit 
 
 **Language/Version**: JavaScript (Next.js 15, Node.js 18+)  
 **Primary Dependencies**: Next.js 15, NextAuth.js (existing), @octokit/rest (GitHub API), sharp (image processing), unified/remark (markdown validation)  
-**Storage**: GitHub repository (code), PostgreSQL with Prisma (submission audit log)  
+**Storage**: GitHub repository (code), PostgreSQL with Prisma (audit logging only - not retry queue)  
 **Testing**: Jest with React Testing Library (component tests), Playwright (E2E)  
 **Target Platform**: Vercel serverless functions  
 **Performance Goals**: Form load <2s, validation <500ms, PR creation <10s  

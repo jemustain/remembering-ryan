@@ -10,7 +10,7 @@
 ### Session 2025-12-05
 
 - Q: GitHub PR Creation Method - Which authentication method should be used for GitHub API access? → A: Personal Access Token (PAT) stored in environment variables
-- Q: Story Submission Persistence - Should submissions be stored in database or processed ephemerally? → A: Ephemeral only - process immediately without persistence
+- Q: Story Submission Persistence - Should submissions be stored in database or processed ephemerally? → A: Database used for audit logging only (not for retry queue) - submissions processed immediately but audit record saved for tracking
 - Q: Concurrent Submission Handling - How should system handle multiple simultaneous submissions? → A: Sequential processing with user feedback - queue at API level, process one at a time
 - Q: Content Validation Timing - When should content validation occur? → A: Client and server validation - immediate feedback plus security verification
 - Q: Image Upload Failure Recovery - How should system handle image upload failures? → A: Fail entire submission - user retries with form data preserved in browser
@@ -136,12 +136,12 @@ Users can view their previously submitted stories and their approval status (pen
 - **Author**: Text field for author name (defaults to session user)
 - **Hero Image**: File upload for featured image
 - **Additional Images**: Multiple file upload for inline story images
-- **Status**: Submission state (processing, pr-created, error) - ephemeral, not persisted
-- **PR URL**: Link to generated GitHub pull request - returned in response only
-- **Created At**: Timestamp of submission - not persisted, for request tracking only
-- **Submitted By**: User ID of submitter - captured in PR metadata only
+- **Status**: Submission state (processing, pr-created, error) - persisted for audit trail
+- **PR URL**: Link to generated GitHub pull request - persisted for audit trail
+- **Created At**: Timestamp of submission - persisted for audit trail
+- **Submitted By**: User ID of submitter - persisted for audit trail
 
-**Note**: Submissions are processed immediately without database persistence. If GitHub API fails, user receives error and must resubmit.
+**Note**: Submissions are processed immediately without retry queue. Database persistence is used solely for audit logging and submission history tracking (NFR-006).
 
 ### GitHub Pull Request Metadata
 - **Branch Name**: Format `story-submission/[story-slug]-[timestamp]`

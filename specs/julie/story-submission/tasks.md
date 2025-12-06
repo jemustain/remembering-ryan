@@ -12,10 +12,10 @@
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-- [ ] T001 Install dependencies: @octokit/rest, sharp, unified, remark-parse, remark-stringify
-- [ ] T002 [P] Create environment variable GITHUB_TOKEN in .env.local with repository write permissions
-- [ ] T003 [P] Verify NextAuth.js configuration includes FAMILY and ADMIN role checks
-- [ ] T004 Create base directory structure: lib/github/, lib/validation/, lib/image/, app/api/story-submission/
+- [X] T001 Install dependencies: @octokit/rest, sharp, unified, remark-parse, remark-stringify
+- [X] T002 [P] Create environment variable GITHUB_TOKEN in .env.local with repository write permissions
+- [X] T003 [P] Verify NextAuth.js configuration includes FAMILY and ADMIN role checks
+- [X] T004 Create base directory structure: lib/github/, lib/validation/, lib/image/, app/api/story-submission/
 
 ---
 
@@ -23,17 +23,17 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 Update Prisma schema with StorySubmission model in prisma/schema.prisma
-- [ ] T006 Run Prisma migration: `npx prisma migrate dev --name add-story-submission`
-- [ ] T007 [P] Create GitHub API client wrapper in lib/github/client.js with Octokit initialization
-- [ ] T008 [P] Implement emoji detection function in lib/validation/emojiDetector.js using regex pattern
-- [ ] T009 [P] Implement content validator in lib/validation/contentValidator.js (checks emojis, "Ryan" usage, word count)
-- [ ] T010 [P] Implement image validator in lib/validation/imageValidator.js (file type, size checks)
-- [ ] T011 [P] Implement image optimizer in lib/image/optimizer.js using sharp (WebP conversion, resize, compression)
-- [ ] T012 Implement story number query function in lib/github/getNextStoryNumber.js
-- [ ] T013 Implement MDX file generator in lib/github/generateStoryFile.js (creates page.mdx with required imports)
-- [ ] T014 Implement GitHub file upload in lib/github/uploadFile.js (uses Octokit)
-- [ ] T015 Implement PR creation service in lib/github/createPullRequest.js (orchestrates branch, files, PR)
+- [X] T005 Update Prisma schema with StorySubmission model in prisma/schema.prisma
+- [X] T006 Run Prisma migration: `npx prisma migrate dev --name add-story-submission`
+- [X] T007 [P] Create GitHub API client wrapper in lib/github/client.js with Octokit initialization
+- [X] T008 [P] Implement emoji detection function in lib/validation/emojiDetector.js using regex pattern
+- [X] T009 [P] Implement content validator in lib/validation/contentValidator.js (checks emojis, "Ryan" usage, word count)
+- [X] T010 [P] Implement image validator in lib/validation/imageValidator.js (file type, size checks)
+- [X] T011 [P] Implement image optimizer in lib/image/optimizer.js using sharp (WebP conversion, resize, compression)
+- [X] T012 Implement story number query function in lib/github/getNextStoryNumber.js
+- [X] T013 Implement MDX file generator in lib/github/generateStoryFile.js (creates page.mdx with required imports)
+- [X] T014 Implement GitHub file upload in lib/github/uploadFile.js (uses Octokit)
+- [X] T015 Implement PR creation service in lib/github/createPullRequest.js (orchestrates branch, files, PR)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -43,21 +43,21 @@
 
 **Goal**: Enable signed-in users to submit stories through a form that generates GitHub PRs
 
-- [ ] T016 [P] [US1] Create story submission page at app/submit-story/page.js with authentication check
-- [ ] T017 [P] [US1] Create StoryForm component in app/submit-story/StoryForm.js with form state management
-- [ ] T018 [P] [US1] Create ImageUpload component in app/submit-story/ImageUpload.js with preview
-- [ ] T019 [P] [US1] Create SubmissionSuccess component in app/submit-story/SubmissionSuccess.js with PR link
-- [ ] T020 [US1] Create validation API endpoint at app/api/story-submission/validate/route.js
+- [X] T016 [P] [US1] Create story submission page at app/submit-story/page.js with authentication check
+- [X] T017 [P] [US1] Create StoryForm component in app/submit-story/StoryForm.js with form state management
+- [X] T018 [P] [US1] Create ImageUpload component in app/submit-story/ImageUpload.js with preview
+- [X] T019 [P] [US1] Create SubmissionSuccess component in app/submit-story/SubmissionSuccess.js with PR link
+- [X] T020 [US1] Create validation API endpoint at app/api/story-submission/validate/route.js
 - [ ] T021 [US1] Create image upload API endpoint at app/api/story-submission/upload-images/route.js
-- [ ] T022 [US1] Create PR creation API endpoint at app/api/story-submission/create-pr/route.js
-- [ ] T023 [US1] Create story number API endpoint at app/api/stories/next-number/route.js
-- [ ] T024 [US1] Implement client-side form validation with real-time feedback in StoryForm.js
-- [ ] T025 [US1] Implement server action for form submission in app/submit-story/actions.js
-- [ ] T026 [US1] Add loading states to StoryForm.js during validation and submission
-- [ ] T027 [US1] Add error handling with user-friendly messages in StoryForm.js
+- [ ] T022 [US1] Create PR creation API endpoint at app/api/story-submission/create-pr/route.js (includes saving StorySubmission audit record to database)
+- [X] T023 [US1] Create story number API endpoint at app/api/stories/next-number/route.js
+- [X] T024 [US1] Implement client-side form validation with real-time feedback in StoryForm.js
+- [X] T025 [US1] Implement server action for form submission in app/submit-story/actions.js
+- [X] T026 [US1] Add loading states to StoryForm.js during validation and submission
+- [X] T027 [US1] Add error handling with user-friendly messages in StoryForm.js
 - [ ] T028 [US1] Implement form data persistence in browser storage (survives auth expiry)
-- [ ] T029 [US1] Add accessibility attributes (ARIA labels, keyboard navigation) to form components
-- [ ] T030 [US1] Create PR template at .github/PULL_REQUEST_TEMPLATE/story_submission.md with review checklist
+- [X] T029 [US1] Add accessibility attributes (ARIA labels, keyboard navigation) to form components
+- [X] T030 [US1] Create PR template at .github/PULL_REQUEST_TEMPLATE/story_submission.md with review checklist
 
 **Checkpoint**: User Story 1 should be fully functional and testable
 
