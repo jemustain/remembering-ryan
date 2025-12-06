@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
-const handler = NextAuth({
+export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -46,7 +46,9 @@ const handler = NextAuth({
   pages: {
     signIn: '/auth/signin',
   },
-})
+}
+
+const handler = NextAuth(authOptions)
 
 function getInitialRole(email) {
   const adminEmails = process.env.ADMIN_EMAILS?.split(',').map(e => e.trim()) || []

@@ -71,6 +71,28 @@ model StoryView {
   @@unique([userId, storySlug])
 }
 
+model StorySubmission {
+  id               String   @id @default(cuid())
+  userId           String
+  storyNumber      Int
+  title            String
+  content          String   // The raw MDX content
+  imageCount       Int      @default(0)
+  prUrl            String   // GitHub PR URL
+  prNumber         Int      // GitHub PR number
+  prStatus         String   @default("open") // open, merged, closed
+  submittedAt      DateTime @default(now())
+  lastUpdated      DateTime @updatedAt
+  
+  // Audit trail
+  userEmail        String   // Denormalized for audit
+  userName         String?  // Denormalized for audit
+  
+  @@index([userId])
+  @@index([prStatus])
+  @@index([submittedAt])
+}
+
 enum Role {
   ADMIN
   FAMILY

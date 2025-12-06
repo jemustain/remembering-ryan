@@ -54,6 +54,13 @@ export default function MobileMenu() {
             >
               About
             </a>
+            <a 
+              href="/submit-story" 
+              className="mobile-nav-link"
+              onClick={() => setIsOpen(false)}
+            >
+              Submit Story
+            </a>
           </div>
         </div>
       )}

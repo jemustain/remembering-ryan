@@ -37,6 +37,7 @@ export default function RootLayout({
                     <a href="/" className="nav-link">Home</a>
                     <a href="/stories" className="nav-link">Stories</a>
                     <a href="/about" className="nav-link">About</a>
+                    <a href="/submit-story" className="nav-link">Submit Story</a>
                   </div>
                   
                   <MobileMenu />
