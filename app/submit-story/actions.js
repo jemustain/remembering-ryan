@@ -132,7 +132,7 @@ export async function submitStory(formData) {
           imageCount: optimizedImages.length,
           prUrl: prResult.prUrl,
           prNumber: prResult.prNumber,
-          branchName: prResult.branchName,
+          branchName: prResult.branch, // GitHub function returns 'branch', not 'branchName'
           status: 'pending',
         },
       })
