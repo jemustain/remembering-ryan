@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../auth/[...nextauth]/route'
-import prisma from '../../../../lib/prisma'
+import { prisma } from '../../../../lib/prisma'
 
 export async function GET(request) {
   try {
@@ -17,6 +17,18 @@ export async function GET(request) {
 
     // Get user's email
     const userEmail = session.user.email
+
+    // Check if Prisma client is properly initialized
+    if (!prisma || !prisma.storySubmission) {
+      console.error('Prisma client not properly initialized. Available models:', Object.keys(prisma || {}))
+      return NextResponse.json(
+        { 
+          error: 'Database connection error',
+          details: 'Prisma client not initialized properly. Please contact administrator.'
+        },
+        { status: 500 }
+      )
+    }
 
     // Fetch all submissions for this user from database
     const submissions = await prisma.storySubmission.findMany({

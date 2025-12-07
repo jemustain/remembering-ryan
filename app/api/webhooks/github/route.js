@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { headers } from 'next/headers'
 import crypto from 'crypto'
-import prisma from '../../../../lib/prisma'
+import { prisma } from '../../../../lib/prisma'
 
 // Verify GitHub webhook signature
 function verifySignature(payload, signature) {
