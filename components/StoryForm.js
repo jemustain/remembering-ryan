@@ -7,6 +7,7 @@
 
 import { useState } from 'react'
 import { submitStory } from '../app/submit-story/actions'
+import Tooltip from './Tooltip'
 
 export default function StoryForm({ user }) {
   const [formData, setFormData] = useState({
@@ -21,6 +22,21 @@ export default function StoryForm({ user }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isValidating, setIsValidating] = useState(false)
   const [submitResult, setSubmitResult] = useState(null)
+  const [fieldWarnings, setFieldWarnings] = useState({}) // Real-time validation warnings
+  
+  // Emoji detection regex
+  const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1FA70}-\u{1FAFF}\u{1F018}-\u{1F270}\u{238C}\u{2B06}\u{2B07}\u{2B05}\u{27A1}]/gu
+  
+  // Check for "Ryan" in text
+  const checkRyanMention = (text) => {
+    return /\bryan\b/i.test(text)
+  }
+  
+  // Detect emojis in text
+  const detectEmojis = (text) => {
+    const matches = text.match(emojiRegex)
+    return matches ? matches.length : 0
+  }
   
   // Handle input changes
   const handleChange = (e) => {
@@ -38,6 +54,40 @@ export default function StoryForm({ user }) {
         return newErrors
       })
     }
+    
+    // Real-time validation warnings
+    const newFieldWarnings = { ...fieldWarnings }
+    
+    if (name === 'title') {
+      const emojiCount = detectEmojis(value)
+      if (emojiCount > 0) {
+        newFieldWarnings.title = `⚠️ ${emojiCount} emoji${emojiCount > 1 ? 's' : ''} detected - please remove them`
+      } else {
+        delete newFieldWarnings.title
+      }
+    }
+    
+    if (name === 'content') {
+      const warnings = []
+      const emojiCount = detectEmojis(value)
+      const ryanMentioned = checkRyanMention(value)
+      
+      if (emojiCount > 0) {
+        warnings.push(`${emojiCount} emoji${emojiCount > 1 ? 's' : ''} found - please remove`)
+      }
+      
+      if (value.trim() && !ryanMentioned) {
+        warnings.push('Story should mention "Ryan"')
+      }
+      
+      if (warnings.length > 0) {
+        newFieldWarnings.content = warnings
+      } else {
+        delete newFieldWarnings.content
+      }
+    }
+    
+    setFieldWarnings(newFieldWarnings)
   }
   
   // Handle image selection
@@ -198,6 +248,14 @@ export default function StoryForm({ user }) {
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
           Story Title *
+          <Tooltip 
+            content="Give your story a clear, descriptive title. Must be 3-100 characters. No emojis allowed."
+            position="right"
+          >
+            <span className="ml-2 inline-flex items-center justify-center w-4 h-4 text-xs text-white bg-forest-500 rounded-full cursor-help">
+              ?
+            </span>
+          </Tooltip>
         </label>
         <input
           type="text"
@@ -206,20 +264,25 @@ export default function StoryForm({ user }) {
           value={formData.title}
           onChange={handleChange}
           className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-forest-500 focus:border-transparent ${
-            errors.title ? 'border-red-500' : 'border-gray-300'
+            errors.title ? 'border-red-500' : fieldWarnings.title ? 'border-yellow-500' : 'border-gray-300'
           }`}
           placeholder="e.g., The Time Ryan Fixed the Truck"
           maxLength={100}
           disabled={isSubmitting}
           aria-invalid={!!errors.title}
-          aria-describedby={errors.title ? 'title-error' : undefined}
+          aria-describedby={errors.title ? 'title-error' : fieldWarnings.title ? 'title-warning' : 'title-help'}
         />
         {errors.title && (
           <p id="title-error" className="mt-1 text-sm text-red-600" role="alert">
             {errors.title}
           </p>
         )}
-        <p className="mt-1 text-xs text-gray-500">
+        {!errors.title && fieldWarnings.title && (
+          <p id="title-warning" className="mt-1 text-sm text-yellow-600" role="alert">
+            {fieldWarnings.title}
+          </p>
+        )}
+        <p id="title-help" className="mt-1 text-xs text-gray-500">
           {formData.title.length}/100 characters
         </p>
       </div>
@@ -245,6 +308,14 @@ export default function StoryForm({ user }) {
       <div>
         <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
           Story Content *
+          <Tooltip 
+            content="Share your memory of Ryan in a child-friendly way. Must mention 'Ryan' at least once. No emojis. 10-5000 words. Markdown formatting is supported."
+            position="right"
+          >
+            <span className="ml-2 inline-flex items-center justify-center w-4 h-4 text-xs text-white bg-forest-500 rounded-full cursor-help">
+              ?
+            </span>
+          </Tooltip>
         </label>
         <textarea
           id="content"
@@ -253,27 +324,47 @@ export default function StoryForm({ user }) {
           onChange={handleChange}
           rows={12}
           className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-forest-500 focus:border-transparent font-comic ${
-            errors.content ? 'border-red-500' : 'border-gray-300'
+            errors.content ? 'border-red-500' : fieldWarnings.content ? 'border-yellow-500' : 'border-gray-300'
           }`}
           placeholder="Share your memory of Ryan... (You can use markdown formatting)"
           disabled={isSubmitting}
           aria-invalid={!!errors.content}
-          aria-describedby={errors.content ? 'content-error' : undefined}
+          aria-describedby={errors.content ? 'content-error' : fieldWarnings.content ? 'content-warning' : 'content-help'}
         />
         {errors.content && (
           <p id="content-error" className="mt-1 text-sm text-red-600" role="alert">
             {errors.content}
           </p>
         )}
-        <p className="mt-1 text-xs text-gray-500">
-          {wordCount} words (minimum: 10, maximum: 5000)
-        </p>
+        {!errors.content && fieldWarnings.content && fieldWarnings.content.length > 0 && (
+          <div id="content-warning" className="mt-1 space-y-1" role="alert">
+            {fieldWarnings.content.map((warning, i) => (
+              <p key={i} className="text-sm text-yellow-600">⚠️ {warning}</p>
+            ))}
+          </div>
+        )}
+        <div className="mt-1 flex justify-between items-center">
+          <p id="content-help" className="text-xs text-gray-500">
+            {wordCount} words (minimum: 10, maximum: 5000)
+          </p>
+          {formData.content.trim() && checkRyanMention(formData.content) && (
+            <p className="text-xs text-green-600">✓ "Ryan" mentioned</p>
+          )}
+        </div>
       </div>
       
       {/* Image Upload */}
       <div>
         <label htmlFor="images" className="block text-sm font-medium text-gray-700 mb-2">
           Images (optional)
+          <Tooltip 
+            content="Add up to 10 photos. Max 10MB each. Supported formats: JPG, PNG, WebP, GIF. Images will be automatically optimized for web display."
+            position="right"
+          >
+            <span className="ml-2 inline-flex items-center justify-center w-4 h-4 text-xs text-white bg-forest-500 rounded-full cursor-help">
+              ?
+            </span>
+          </Tooltip>
         </label>
         <input
           type="file"
