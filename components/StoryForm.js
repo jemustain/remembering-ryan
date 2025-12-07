@@ -7,6 +7,7 @@
 
 import { useState } from 'react'
 import { submitStory } from '../app/submit-story/actions'
+import Tooltip from './Tooltip'
 
 export default function StoryForm({ user }) {
   const [formData, setFormData] = useState({
@@ -247,6 +248,14 @@ export default function StoryForm({ user }) {
       <div>
         <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
           Story Title *
+          <Tooltip 
+            content="Give your story a clear, descriptive title. Must be 3-100 characters. No emojis allowed."
+            position="right"
+          >
+            <span className="ml-2 inline-flex items-center justify-center w-4 h-4 text-xs text-white bg-forest-500 rounded-full cursor-help">
+              ?
+            </span>
+          </Tooltip>
         </label>
         <input
           type="text"
@@ -299,6 +308,14 @@ export default function StoryForm({ user }) {
       <div>
         <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
           Story Content *
+          <Tooltip 
+            content="Share your memory of Ryan in a child-friendly way. Must mention 'Ryan' at least once. No emojis. 10-5000 words. Markdown formatting is supported."
+            position="right"
+          >
+            <span className="ml-2 inline-flex items-center justify-center w-4 h-4 text-xs text-white bg-forest-500 rounded-full cursor-help">
+              ?
+            </span>
+          </Tooltip>
         </label>
         <textarea
           id="content"
@@ -340,6 +357,14 @@ export default function StoryForm({ user }) {
       <div>
         <label htmlFor="images" className="block text-sm font-medium text-gray-700 mb-2">
           Images (optional)
+          <Tooltip 
+            content="Add up to 10 photos. Max 10MB each. Supported formats: JPG, PNG, WebP, GIF. Images will be automatically optimized for web display."
+            position="right"
+          >
+            <span className="ml-2 inline-flex items-center justify-center w-4 h-4 text-xs text-white bg-forest-500 rounded-full cursor-help">
+              ?
+            </span>
+          </Tooltip>
         </label>
         <input
           type="file"
