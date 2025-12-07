@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import { prisma } from '../../lib/prisma'
 import UserManagement from './UserManagement'
+import RecentSubmissions from './RecentSubmissions'
 
 export default async function AdminPage() {
   const session = await getServerSession()
@@ -88,6 +89,11 @@ export default async function AdminPage() {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* Recent Story Submissions */}
+      <div className="mb-8">
+        <RecentSubmissions />
       </div>
 
       {/* User Management */}
