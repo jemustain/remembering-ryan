@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -23,8 +20,7 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -38,18 +34,17 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?     @unique
   emailVerified DateTime?
   image         String?
-  role          Role      @default(FAMILY)
-  createdAt     DateTime  @default(now())
+  role          Role        @default(FAMILY)
+  createdAt     DateTime    @default(now())
   lastSignIn    DateTime?
-  
-  accounts Account[]
-  sessions Session[]
-  storyViews StoryView[]
+  accounts      Account[]
+  sessions      Session[]
+  storyViews    StoryView[]
 }
 
 model VerificationToken {
@@ -65,28 +60,27 @@ model StoryView {
   userId    String
   storySlug String
   viewedAt  DateTime @default(now())
-  
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@unique([userId, storySlug])
 }
 
 model StorySubmission {
-  id               String   @id @default(cuid())
-  userId           String
-  userEmail        String   // User email who submitted
-  userName         String?  // User name for display
-  storyNumber      Int
-  title            String
-  content          String   @db.Text // The raw MDX content
-  imageCount       Int      @default(0)
-  prUrl            String   // GitHub PR URL
-  prNumber         Int      // GitHub PR number
-  branchName       String   // GitHub branch name
-  status           String   @default("pending") // pending, published, rejected
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  
+  id          String   @id @default(cuid())
+  userId      String
+  userEmail   String
+  userName    String?
+  storyNumber Int
+  title       String
+  content     String   @db.Text
+  imageCount  Int      @default(0)
+  prUrl       String
+  prNumber    Int
+  branchName  String
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
   @@index([userId])
   @@index([userEmail])
   @@index([status])

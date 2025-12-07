@@ -11,9 +11,7 @@ import { validateStory } from '../../lib/validation/contentValidator'
 import { validateImages } from '../../lib/validation/imageValidator'
 import { optimizeImages, fileToBuffer } from '../../lib/image/optimizer'
 import { createStoryPullRequest } from '../../lib/github/createPullRequest'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from '../../lib/prisma'
 
 /**
  * Submit a story with images and create GitHub PR
@@ -122,7 +120,8 @@ export async function submitStory(formData) {
     
     // 7. Save audit record to database
     try {
-      await prisma.storySubmission.create({
+      console.log('Attempting to save story submission to database...')
+      const submission = await prisma.storySubmission.create({
         data: {
           userId: session.user.id,
           userEmail: session.user.email,
@@ -137,8 +136,15 @@ export async function submitStory(formData) {
           status: 'pending',
         },
       })
+      console.log('Successfully saved story submission:', submission.id)
     } catch (error) {
       console.error('Database audit log error:', error)
+      console.error('Error details:', {
+        name: error.name,
+        message: error.message,
+        code: error.code,
+        meta: error.meta,
+      })
       // Don't fail the submission if audit log fails
       // PR was already created successfully
     }
