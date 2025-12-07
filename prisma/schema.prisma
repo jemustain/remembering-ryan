@@ -91,6 +91,7 @@ model StorySubmission {
   @@index([userId])
   @@index([prStatus])
   @@index([submittedAt])
+  @@index([userEmail])
 }
 
 enum Role {

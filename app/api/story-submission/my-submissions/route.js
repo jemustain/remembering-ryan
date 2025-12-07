@@ -21,29 +21,43 @@ export async function GET(request) {
     // Fetch all submissions for this user from database
     const submissions = await prisma.storySubmission.findMany({
       where: {
-        submittedBy: userEmail,
+        userEmail: userEmail, // Use userEmail field that exists in production
       },
       orderBy: {
-        createdAt: 'desc', // Newest first by default
+        submittedAt: 'desc', // Use submittedAt field from production schema
       },
       select: {
         id: true,
         title: true,
         storyNumber: true,
-        status: true,
+        prStatus: true, // Map from prStatus to status for frontend
         prUrl: true,
         prNumber: true,
-        branchName: true,
-        submittedBy: true,
-        createdAt: true,
-        updatedAt: true,
+        userId: true,
+        userEmail: true,
+        userName: true,
+        submittedAt: true, // Use submittedAt from production
+        lastUpdated: true, // Use lastUpdated from production
       },
     })
 
+    // Transform to match expected frontend format
+    const transformedSubmissions = submissions.map(sub => ({
+      id: sub.id,
+      title: sub.title,
+      storyNumber: sub.storyNumber,
+      status: sub.prStatus === 'merged' ? 'published' : sub.prStatus === 'closed' ? 'rejected' : 'pending',
+      prUrl: sub.prUrl,
+      prNumber: sub.prNumber,
+      submittedBy: sub.userEmail,
+      createdAt: sub.submittedAt,
+      updatedAt: sub.lastUpdated,
+    }))
+
     return NextResponse.json({
       success: true,
-      submissions,
-      count: submissions.length,
+      submissions: transformedSubmissions,
+      count: transformedSubmissions.length,
     })
 
   } catch (error) {

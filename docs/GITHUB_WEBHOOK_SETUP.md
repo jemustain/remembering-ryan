@@ -118,14 +118,19 @@ This allows users to see the real-time status of their submitted stories in the 
 After merging a test PR, check that the database was updated:
 
 ```bash
-# Connect to your database
-npx prisma studio
+# Connect to your database (on Windows PowerShell)
+$env:DATABASE_URL=(Get-Content .env.local | Select-String 'DATABASE_URL=' | ForEach-Object { $_ -replace 'DATABASE_URL=', '' } | Select-Object -First 1 -Skip 0).Trim('"'); npx prisma studio
 
-# Or query directly
+# Or on Linux/Mac
+dotenv -e .env.local -- npx prisma studio
+
+# Or query directly (if you have DATABASE_URL exported)
 npx prisma db execute --stdin <<EOF
 SELECT * FROM StorySubmission WHERE status = 'published';
 EOF
 ```
+
+**Note:** Prisma Studio looks for `.env` by default, not `.env.local`. The commands above explicitly load the DATABASE_URL from `.env.local`.
 
 ---
 
@@ -366,8 +371,11 @@ openssl rand -hex 32
 # Check Vercel logs
 vercel logs --prod
 
-# View recent submissions
-npx prisma studio
+# View recent submissions (Windows PowerShell)
+$env:DATABASE_URL=(Get-Content .env.local | Select-String 'DATABASE_URL=' | ForEach-Object { $_ -replace 'DATABASE_URL=', '' } | Select-Object -First 1 -Skip 0).Trim('"'); npx prisma studio
+
+# View recent submissions (Linux/Mac)
+dotenv -e .env.local -- npx prisma studio
 
 # Test locally with mock webhook
 curl -X POST http://localhost:3000/api/webhooks/github \
