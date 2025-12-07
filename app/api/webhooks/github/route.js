@@ -60,24 +60,23 @@ export async function POST(request) {
         })
 
         if (submission) {
-          // Update prStatus based on whether PR was merged or just closed
-          const newPrStatus = wasMerged ? 'merged' : 'closed'
+          // Update status based on whether PR was merged or just closed
+          const newStatus = wasMerged ? 'published' : 'rejected'
           
           await prisma.storySubmission.update({
             where: { id: submission.id },
             data: {
-              prStatus: newPrStatus,
-              lastUpdated: new Date(),
+              status: newStatus,
             },
           })
 
           console.log(
-            `Updated submission "${submission.title}" to prStatus: ${newPrStatus}`
+            `Updated submission "${submission.title}" to status: ${newStatus}`
           )
 
           return NextResponse.json({
             success: true,
-            message: `Submission updated to ${newPrStatus}`,
+            message: `Submission updated to ${newStatus}`,
             submissionId: submission.id,
           })
         } else {
@@ -101,16 +100,15 @@ export async function POST(request) {
           await prisma.storySubmission.update({
             where: { id: submission.id },
             data: {
-              prStatus: 'open',
-              lastUpdated: new Date(),
+              status: 'pending',
             },
           })
 
-          console.log(`Updated submission "${submission.title}" back to open`)
+          console.log(`Updated submission "${submission.title}" back to pending`)
 
           return NextResponse.json({
             success: true,
-            message: 'Submission updated to open',
+            message: 'Submission updated to pending',
             submissionId: submission.id,
           })
         }

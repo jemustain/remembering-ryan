@@ -133,7 +133,8 @@ export async function submitStory(formData) {
           imageCount: optimizedImages.length,
           prUrl: prResult.prUrl,
           prNumber: prResult.prNumber,
-          prStatus: 'open',
+          branchName: prResult.branchName,
+          status: 'pending',
         },
       })
     } catch (error) {
