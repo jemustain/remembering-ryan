@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import SubmissionList from './SubmissionList'
 import AuthButton from '../../../components/AuthButton'
+import ErrorBoundary from '../../../components/ErrorBoundary'
 
 export default function SubmissionHistoryPage() {
   const { data: session, status } = useSession()
@@ -71,7 +72,9 @@ export default function SubmissionHistoryPage() {
       </div>
 
       {/* Submissions List */}
-      <SubmissionList userId={session.user.email} />
+      <ErrorBoundary>
+        <SubmissionList userId={session.user.email} />
+      </ErrorBoundary>
     </div>
   )
 }

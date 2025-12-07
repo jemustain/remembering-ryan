@@ -6,6 +6,7 @@
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
 import StoryForm from '../../components/StoryForm'
+import ErrorBoundary from '../../components/ErrorBoundary'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 
 export const metadata = {
@@ -39,7 +40,9 @@ export default async function SubmitStoryPage() {
         </div>
         
         <div className="bg-white rounded-lg shadow-md p-6 sm:p-8">
-          <StoryForm user={session.user} />
+          <ErrorBoundary>
+            <StoryForm user={session.user} />
+          </ErrorBoundary>
         </div>
         
         <div className="mt-6 text-center text-sm text-gray-500">
