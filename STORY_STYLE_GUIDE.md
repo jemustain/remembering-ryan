@@ -5,9 +5,55 @@
 
 These stories are written for Ryan's young son to help him understand and remember his father. Each story should be:
 - **Age-appropriate** for a 3-year-old (simple language, concrete concepts)
-- **Positive and comforting** (focus on Ryan's love, kindness, and good qualities)
+- **Positive and comforting** (focus on how Ryan showed love through actions)
 - **Emotionally safe** (avoid scary or confusing elements)
 - **Respectful of family** (honor Julie and Ryan's relationship)
+- **Authentic** (don't make Ryan sound like someone he wasn't)
+
+## Writing About Ryan Authentically
+
+**CRITICAL: Ryan was NOT warm and fuzzy. Don't write him that way.**
+
+### Who Ryan Really Was
+Ryan was quiet, rough around the edges, and didn't waste words. He wasn't the type to express emotions openly or be verbally affectionate. He was protective, loyal, and showed he cared through **what he did**, not what he said.
+
+### How to Write Him Correctly
+✅ **DO show Ryan:**
+- Fixing things without being asked
+- Being protective and looking out for Julie
+- Working hard and being skilled with his hands
+- Being thoughtful in practical ways (bringing home something you needed, solving a problem)
+- Wanting to provide and give his family a better life
+- Being quiet but reliable
+
+✅ **DO use language like:**
+- "Ryan wasn't one for a lot of words, but he showed he cared by..."
+- "Ryan noticed something needed fixing and got to work"
+- "That's just what Ryan did - he took care of things"
+- "Ryan was always thinking of ways to help"
+
+❌ **DON'T describe Ryan as:**
+- "Warm and loving" - too soft for his personality
+- "Brought joy to everyone around him" - not authentic
+- "Had a heart of gold" - too cliché and generic
+- "Always smiling" or "cheerful" - wasn't his nature
+- Speaking in flowery or emotionally expressive ways
+
+❌ **DON'T write dialogue where Ryan:**
+- Uses lots of affectionate words
+- Expresses feelings directly
+- Sounds overly enthusiastic or chipper
+
+### Examples of Authentic Writing
+
+**GOOD - Shows his character through actions:**
+> "Ryan looked at the broken water heater. 'I'll fix it,' he said. He didn't like seeing Julie worry about things like that. He got his tools and went to work, figuring out the problem piece by piece until it worked again."
+
+**BAD - Makes him sound like someone he wasn't:**
+> "Ryan gave Julie a warm hug. 'Don't you worry, sweetie!' he said with a big smile. 'I just love fixing things for you! It brings me so much joy to help!' He cheerfully skipped to get his tools."
+
+### The Goal
+Write stories that help Ryan's son understand that love doesn't always look like words and hugs. Sometimes love looks like a man who shows up, fixes what's broken, protects his family, and works hard to give them the world - even if he never says "I love you" every day. That was Ryan.
 
 ## Language Guidelines
 
@@ -52,9 +98,12 @@ These stories are written for Ryan's young son to help him understand and rememb
 
 ### Ryan
 **Standard Description**: "Ryan, the tall, blonde, hard-working builder"
-- Emphasize: kindness, helpfulness, building/fixing skills, love for animals
 - Physical traits: tall, blonde hair
-- Personality: gentle, caring, hardworking, skilled with his hands
+- Core personality: quiet, rough around the edges, not overly warm or verbally affectionate
+- How he showed love: through actions - fixing things, helping, protecting, being thoughtful
+- Key traits: protective partner, skilled with his hands, hardworking, loyal, wanted to give his family the world
+- What to emphasize: His actions over his words, his practical ways of caring, his dedication
+- What to AVOID: Making him sound overly loving, warm, joyful, or emotionally expressive - that wasn't him
 
 ### Julie 
 **Standard Description**: "Julie, Ryan's best friend" or "Julie"
