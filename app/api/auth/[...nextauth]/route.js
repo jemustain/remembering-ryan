@@ -15,17 +15,32 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
-      // Update last sign in time
       if (user.email) {
-        await prisma.user.update({
+        // Check if user already exists
+        const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
-          data: { 
-            lastSignIn: new Date(),
-            role: getInitialRole(user.email)
-          },
-        }).catch(() => {
-          // User doesn't exist yet, will be created by adapter
-        })
+        }).catch(() => null)
+
+        if (existingUser) {
+          // Existing user: only update lastSignIn, preserve their role
+          await prisma.user.update({
+            where: { email: user.email },
+            data: { lastSignIn: new Date() },
+          }).catch(() => {})
+        } else {
+          // New user: set initial role (adapter creates the user,
+          // then we update role immediately after)
+          // Use upsert to handle race with adapter
+          await prisma.user.update({
+            where: { email: user.email },
+            data: {
+              lastSignIn: new Date(),
+              role: getInitialRole(user.email),
+            },
+          }).catch(() => {
+            // User doesn't exist yet, will be created by adapter
+          })
+        }
       }
       return true
     },
