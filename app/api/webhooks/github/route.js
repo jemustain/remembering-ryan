@@ -6,8 +6,7 @@ import { prisma } from '../../../../lib/prisma'
 // Verify GitHub webhook signature
 function verifySignature(payload, signature) {
   if (!process.env.GITHUB_WEBHOOK_SECRET) {
-    console.warn('GITHUB_WEBHOOK_SECRET not set - skipping signature verification')
-    return true // Allow in development
+    throw new Error('GITHUB_WEBHOOK_SECRET is not configured')
   }
 
   const hmac = crypto.createHmac('sha256', process.env.GITHUB_WEBHOOK_SECRET)
@@ -26,8 +25,16 @@ export async function POST(request) {
     // Get raw body for signature verification
     const body = await request.text()
     
-    // Verify signature (if secret is configured)
-    if (signature && !verifySignature(body, signature)) {
+    // Require signature header
+    if (!signature) {
+      return NextResponse.json(
+        { error: 'Missing signature header' },
+        { status: 401 }
+      )
+    }
+
+    // Verify signature
+    if (!verifySignature(body, signature)) {
       console.error('Invalid webhook signature')
       return NextResponse.json(
         { error: 'Invalid signature' },
