@@ -124,6 +124,41 @@ export default function StoriesPage() {
           </p>
         </header>
 
+        {/* Start Here Section */}
+        {stories.length > 0 && (
+          <div className="mb-12 p-6 sm:p-8 bg-gradient-to-r from-forest-50 to-amber-50 rounded-2xl border border-forest-200">
+            <h2 className="text-2xl font-bold text-forest-800 mb-2">New here? Start with these:</h2>
+            <p className="text-stone-600 mb-6">These three stories are a great introduction to Ryan.</p>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {stories.filter(s => ['01-first-date', '02-second-date', '03-fixing-the-car-fuse'].includes(s.slug)).map((story) => (
+                <Link
+                  key={story.slug}
+                  href={`/stories/${story.slug}`}
+                  className="block group"
+                >
+                  <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-2 border-amber-200 hover:border-amber-400 overflow-hidden">
+                    <div className="h-32 w-full relative overflow-hidden">
+                      {storyImages[story.slug] && (
+                        <Image
+                          src={storyImages[story.slug]}
+                          alt={story.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 640px) 100vw, 33vw"
+                        />
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-semibold text-gray-900 group-hover:text-forest-600 transition-colors">{story.title}</h3>
+                      <span className="text-xs text-amber-600 font-medium">★ Recommended</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {stories.map((story) => (
             <Link
