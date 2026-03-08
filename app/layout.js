@@ -2,6 +2,7 @@ import './globals.css'
 import AuthProvider from '../components/AuthProvider'
 import AuthButton from '../components/AuthButton'
 import MobileMenu from '../components/MobileMenu'
+import ReadingProgress from '../components/ReadingProgress'
 import { Analytics } from '@vercel/analytics/next'
 
 export const metadata = {
@@ -47,6 +48,7 @@ export default function RootLayout({
               </div>
             </div>
           </nav>
+          <ReadingProgress />
           
           <main className="min-h-screen">
             <div className="max-w-4xl mx-auto py-6 sm:py-12 px-4 sm:px-6 lg:px-8">
