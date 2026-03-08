@@ -1,9 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { isFamilyStory } from '../../components/FamilyOnly'
 
 // Featured image for each story
 const storyImages = {
@@ -33,22 +31,50 @@ const storyImages = {
   '24-the-death': '/images/stories/24-the-death/stars.jpg',
 }
 
+// Short excerpt/preview for each story
+const storyExcerpts = {
+  '01-first-date': 'It started with a lake, a nervous smile, and two people who had no idea what was coming next.',
+  '02-second-date': 'The dogs decided they liked each other before we did — and that was all the confirmation we needed.',
+  '03-fixing-the-car-fuse': 'Ryan insisted he could fix it himself. Spoiler: it took three trips to the auto parts store.',
+  '04-dinner-surprise': "He wasn't a cook, but that night he tried — and the effort meant more than the meal ever could.",
+  '05-wood-stove': 'A cold night, a stubborn wood stove, and the kind of teamwork that makes a house feel like home.',
+  '06-balto-fleas': 'Balto brought home more than just muddy paws that day, and bath time became a full family affair.',
+  '07-grammys-christmas': "Christmas at Grammy's was always magic — loud, messy, and full of the people who mattered most.",
+  '08-girlfriend-at-work': "The day Ryan's coworkers found out about me, and how he talked about us when I wasn't around.",
+  '09-the-baby': "The moment everything changed — two lines on a test and a future we couldn't wait to start.",
+  '10-picture-day': 'Ryan hated photos. But this one time, he let his guard down, and we got the best picture we ever took.',
+  '11-tortoises': "A random encounter with desert tortoises turned into one of Ryan's favorite stories to tell.",
+  '12-gone-for-the-weekend': 'He was only gone for two days, but the house felt completely different without him.',
+  '13-puppies': "We said we weren't getting another dog. Then we saw the puppies. You know how this ends.",
+  '14-hot-water-heater': 'Nothing says love like fixing a broken hot water heater at midnight — and somehow making it funny.',
+  '15-telling-dad': 'The phone call that changed everything, and the silence before his dad finally spoke.',
+  '16-carpet-cleaning': 'A mundane chore that somehow became one of those afternoons you never forget.',
+  '17-screen-door': 'Ryan vs. the screen door. The screen door won — but Ryan got the last laugh.',
+  '18-the-rings': 'Not a proposal story, exactly. More like the story of what those rings really meant to us.',
+  '19-plumbing-issue': 'Water everywhere, a frantic call, and proof that Ryan could handle anything — eventually.',
+  '20-bathroom-repairs': 'A weekend project that took three weekends, and all the reasons it was worth it.',
+  '21-easter-eggs': 'Easter eggs hidden so well that we were still finding them weeks later.',
+  '22-birthday': 'Purple flowers, a handwritten card, and the birthday that meant the most.',
+  '23-20-week-ultrasound': "Halfway there — the day we saw our baby and Ryan couldn't stop smiling.",
+  '24-the-death': 'The hardest story to tell, and the one that matters most.',
+}
+
 // Background image mapping for each story - Pine Green + Pale Gold theme
 const storyBackgrounds = {
-  '01-first-date': 'linear-gradient(135deg, #166534 0%, #facc15 100%)', // Pine + Pale Gold
-  '02-second-date': 'linear-gradient(135deg, #15803d 0%, #fde047 100%)', // Hunter + Light Gold
-  '03-fixing-the-car-fuse': 'linear-gradient(135deg, #14532d 0%, #eab308 100%)', // Deep + Champagne
-  '04-dinner-surprise': 'linear-gradient(135deg, #16a34a 0%, #facc15 100%)', // Bright Green + Pale Gold
-  '05-wood-stove': 'linear-gradient(135deg, #166534 0%, #ca8a04 100%)', // Pine + Rich Gold
-  '06-balto-fleas': 'linear-gradient(135deg, #15803d 0%, #facc15 100%)', // Hunter + Pale Gold
-  '07-grammys-christmas': 'linear-gradient(135deg, #14532d 0%, #fde047 100%)', // Deep + Light Gold
-  '08-girlfriend-at-work': 'linear-gradient(135deg, #16a34a 0%, #eab308 100%)', // Bright + Champagne
-  '09-the-baby': 'linear-gradient(135deg, #166534 0%, #fef3c7 100%)', // Pine + Very Light Gold
-  '10-picture-day': 'linear-gradient(135deg, #15803d 0%, #facc15 100%)', // Hunter + Pale Gold
-  '11-tortoises': 'linear-gradient(135deg, #14532d 0%, #facc15 100%)', // Deep + Pale Gold
-  '12-gone-for-the-weekend': 'linear-gradient(135deg, #16a34a 0%, #fde047 100%)', // Bright + Light Gold
-  '13-puppies': 'linear-gradient(135deg, #166534 0%, #eab308 100%)', // Pine + Champagne
-  '14-hot-water-heater': 'linear-gradient(135deg, #15803d 0%, #ca8a04 100%)', // Hunter + Rich Gold
+  '01-first-date': 'linear-gradient(135deg, #166534 0%, #facc15 100%)',
+  '02-second-date': 'linear-gradient(135deg, #15803d 0%, #fde047 100%)',
+  '03-fixing-the-car-fuse': 'linear-gradient(135deg, #14532d 0%, #eab308 100%)',
+  '04-dinner-surprise': 'linear-gradient(135deg, #16a34a 0%, #facc15 100%)',
+  '05-wood-stove': 'linear-gradient(135deg, #166534 0%, #ca8a04 100%)',
+  '06-balto-fleas': 'linear-gradient(135deg, #15803d 0%, #facc15 100%)',
+  '07-grammys-christmas': 'linear-gradient(135deg, #14532d 0%, #fde047 100%)',
+  '08-girlfriend-at-work': 'linear-gradient(135deg, #16a34a 0%, #eab308 100%)',
+  '09-the-baby': 'linear-gradient(135deg, #166534 0%, #fef3c7 100%)',
+  '10-picture-day': 'linear-gradient(135deg, #15803d 0%, #facc15 100%)',
+  '11-tortoises': 'linear-gradient(135deg, #14532d 0%, #facc15 100%)',
+  '12-gone-for-the-weekend': 'linear-gradient(135deg, #16a34a 0%, #fde047 100%)',
+  '13-puppies': 'linear-gradient(135deg, #166534 0%, #eab308 100%)',
+  '14-hot-water-heater': 'linear-gradient(135deg, #15803d 0%, #ca8a04 100%)',
 }
 
 async function getStoriesData() {
@@ -63,7 +89,6 @@ async function getStoriesData() {
 }
 
 export default function StoriesPage() {
-  const { data: session, status } = useSession()
   const [stories, setStories] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -73,9 +98,6 @@ export default function StoriesPage() {
       setLoading(false)
     })
   }, [])
-
-  const isAuthenticated = status === 'authenticated'
-  const hasAccess = session?.user?.role === 'ADMIN' || session?.user?.role === 'FAMILY'
 
   if (loading) {
     return (
@@ -95,107 +117,87 @@ export default function StoriesPage() {
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Stories for Little Ryan
+            Ryan&apos;s Stories
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            Special stories created for you, to help you remember Ryan and 
-            learn about all the wonderful things he loved. Each story is filled with 
-            love and memories just for you.
+            Real stories from our life together — the everyday moments that showed who Ryan really was.
           </p>
         </header>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {stories.map((story) => {
-            const isProtected = isFamilyStory(story.slug)
-            const showLock = isProtected && (!isAuthenticated || !hasAccess)
-            
-            return (
-              <Link
-                key={story.slug}
-                href={`/stories/${story.slug}`}
-                className="block group"
-              >
-                <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-forest-200 h-full overflow-hidden">
-                  {/* Story Image Header */}
-                  <div className="h-48 w-full relative overflow-hidden bg-gray-100">
-                    {storyImages[story.slug] ? (
-                      <>
-                        <Image
-                          src={storyImages[story.slug]}
-                          alt={story.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                      </>
-                    ) : (
-                      <>
-                        {/* Fallback gradient if no image */}
-                        <div 
-                          className="absolute inset-0"
-                          style={{ 
-                            background: storyBackgrounds[story.slug] || 'linear-gradient(135deg, #16a34a 0%, #facc15 100%)' 
-                          }}
-                        />
-                      </>
+          {stories.map((story) => (
+            <Link
+              key={story.slug}
+              href={`/stories/${story.slug}`}
+              className="block group"
+            >
+              <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-forest-200 h-full overflow-hidden">
+                {/* Story Image Header */}
+                <div className="aspect-[4/3] w-full relative overflow-hidden bg-gray-100">
+                  {storyImages[story.slug] ? (
+                    <Image
+                      src={storyImages[story.slug]}
+                      alt={story.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div 
+                      className="absolute inset-0"
+                      style={{ 
+                        background: storyBackgrounds[story.slug] || 'linear-gradient(135deg, #16a34a 0%, #facc15 100%)' 
+                      }}
+                    />
+                  )}
+                  
+                  {/* Warm gradient overlay for text contrast */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+                
+                {/* Card Content */}
+                <div className="p-6">
+                  <div className="flex flex-col h-full">
+                    <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-forest-600 transition-colors mb-2">
+                      {story.title}
+                    </h2>
+                    
+                    {/* Story Excerpt */}
+                    {storyExcerpts[story.slug] && (
+                      <p className="text-sm text-gray-500 mb-4 line-clamp-3 leading-relaxed">
+                        {storyExcerpts[story.slug]}
+                      </p>
                     )}
                     
-                    {/* Lock Icon */}
-                    {showLock && (
-                      <div className="absolute top-3 right-3 bg-white bg-opacity-90 rounded-full p-2 shadow-sm">
-                        <svg className="w-4 h-4 text-stone-600" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                    {/* Author and Reading Time */}
+                    <div className="flex flex-wrap items-center gap-2 text-gray-600 text-xs mb-4">
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                         </svg>
+                        <span>By Julie</span>
                       </div>
-                    )}
-                  </div>
-                  
-                  {/* Card Content */}
-                  <div className="p-6">
-                    <div className="flex flex-col h-full">
-                      <div className="flex items-center justify-between mb-2">
-                        <h2 className="text-2xl font-semibold text-gray-900 group-hover:text-forest-600 transition-colors flex-1">
-                          {story.title}
-                        </h2>
-                        {showLock && (
-                          <div className="ml-2 flex items-center">
-                            <svg className="w-4 h-4 text-stone-500" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                            </svg>
-                          </div>
-                        )}
-                      </div>
-                      
-                      {/* Author and Reading Time */}
-                      <div className="flex flex-wrap items-center gap-2 text-gray-600 text-xs mb-4">
-                        <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                          </svg>
-                          <span>By Julie</span>
-                        </div>
-                        <span className="text-gray-400">•</span>
-                        <div className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                          </svg>
-                          <span>{story.readingTime || '5'} min read</span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex-grow"></div>
-                      <div className="flex items-center text-forest-600 font-medium group-hover:text-forest-700">
-                        {showLock ? 'Sign In to Read' : 'Read Story'}
-                        <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <span className="text-gray-400">•</span>
+                      <div className="flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                         </svg>
+                        <span>{story.readingTime || '5'} min read</span>
                       </div>
+                    </div>
+                    
+                    <div className="flex-grow"></div>
+                    <div className="flex items-center text-forest-600 font-medium group-hover:text-forest-700">
+                      Read Story
+                      <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </div>
                   </div>
                 </div>
-              </Link>
-            )
-          })}
+              </div>
+            </Link>
+          ))}
         </div>
 
         {stories.length === 0 && (
