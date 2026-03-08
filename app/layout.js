@@ -1,8 +1,23 @@
 import './globals.css'
+import { Inter, Crimson_Text } from 'next/font/google'
 import AuthProvider from '../components/AuthProvider'
 import AuthButton from '../components/AuthButton'
 import MobileMenu from '../components/MobileMenu'
 import { Analytics } from '@vercel/analytics/next'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const crimsonText = Crimson_Text({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-crimson',
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'Remembering Ryan - Memorial Website',
@@ -13,13 +28,13 @@ export default function RootLayout({
   children,
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${crimsonText.variable}`}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Allura&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-gray-50 text-gray-900 antialiased">
+      <body className="bg-cream-100 text-stone-900 antialiased">
         <AuthProvider>
-          <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50 relative">
+          <nav className="bg-cream-50 shadow-sm border-b border-cream-300 sticky top-0 z-50 relative">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16 min-w-0">
                 <div className="flex items-center min-w-0 flex-1 mr-4">
@@ -54,9 +69,18 @@ export default function RootLayout({
             </div>
           </main>
           
-          <footer className="bg-white border-t border-gray-200 mt-8 sm:mt-16">
-            <div className="max-w-6xl mx-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8 text-center">
-              <p className="text-gray-600 font-medium text-sm sm:text-base">Made with love for Ryan's family • {new Date().getFullYear()}</p>
+          <footer className="bg-cream-50 border-t border-cream-300 mt-8 sm:mt-16">
+            <div className="max-w-4xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8 text-center">
+              <blockquote className="text-lg sm:text-xl italic text-stone-600 mb-6 leading-relaxed" style={{fontFamily: "var(--font-crimson), 'Crimson Text', Georgia, serif"}}>
+                &ldquo;He showed up. He fixed what was broken. He worked hard to give us a better life.&rdquo;
+              </blockquote>
+              <div className="w-16 h-px bg-gold-400 mx-auto mb-4"></div>
+              <p className="text-stone-500 text-sm sm:text-base">
+                In loving memory of Ryan William Alf
+              </p>
+              <p className="text-stone-400 text-xs sm:text-sm mt-1">
+                Made with love for his family &bull; {new Date().getFullYear()}
+              </p>
             </div>
           </footer>
         </AuthProvider>
