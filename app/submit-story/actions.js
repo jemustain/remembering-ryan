@@ -6,7 +6,7 @@
  */
 
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
+import { authOptions } from '../../lib/auth'
 import { validateStory } from '../../lib/validation/contentValidator'
 import { validateImages } from '../../lib/validation/imageValidator'
 import { optimizeImages, fileToBuffer } from '../../lib/image/optimizer'
