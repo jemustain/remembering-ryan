@@ -7,6 +7,10 @@ on:
       - 'public/images/stories/**'
     types: [opened, synchronize, reopened]
 
+permissions:
+  pull-requests: write
+  contents: read
+
 jobs:
   validate-story:
     name: Validate Story Structure and Content
