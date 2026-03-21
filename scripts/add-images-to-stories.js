@@ -39,10 +39,10 @@ const STORY_IMAGE_PLACEMENTS = {
       { filename: 'dog-bath.jpg', alt: 'Dog getting a bath', insertAfter: 'First, they needed to give Balto a special bath.' }
     ]
   },
-  '07-grammys-christmas': {
+  '07-christmas-with-the-family': {
     import: "import StoryImage from '../../../components/StoryImage'",
     images: [
-      { filename: 'christmas-tree.jpg', alt: 'Decorated Christmas tree', insertAfter: "# Grammy's Christmas" },
+      { filename: 'christmas-tree.jpg', alt: 'Decorated Christmas tree', insertAfter: "# Christmas with the Family" },
       { filename: 'christmas-family.jpg', alt: 'Christmas family celebration', insertAfter: 'When they arrived, the house was filled with the wonderful smell of cookies baking and pine trees.' }
     ]
   },

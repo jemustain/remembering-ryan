@@ -9,7 +9,7 @@ const STORY_HERO_IMAGES = {
   '04-dinner-surprise': { filename: 'cooking.jpg', alt: 'Cooking a special dinner' },
   '05-wood-stove': { filename: 'wood-stove.jpg', alt: 'Cozy wood burning stove' },
   '06-balto-fleas': { filename: 'dog-bath.jpg', alt: 'Giving a dog a bath' },
-  '07-grammys-christmas': { filename: 'christmas-tree.jpg', alt: 'Decorated Christmas tree' },
+  '07-christmas-with-the-family': { filename: 'christmas-tree.jpg', alt: 'Decorated Christmas tree' },
   '08-girlfriend-at-work': { filename: 'workplace.jpg', alt: 'Workplace scene' },
   '09-the-baby': { filename: 'announcement.jpg', alt: 'Special announcement' },
   '10-picture-day': { filename: 'photo-session.jpg', alt: 'Photo session' },
