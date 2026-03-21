@@ -29,9 +29,8 @@ export default function StoryMeta({ author = 'Julie' }) {
       const words = cleanContent.split(' ').filter(word => word.length > 0);
       const wordCount = words.length;
 
-      // Reading speed for children's stories: 150 words per minute
-      // (accounts for expressive reading, pauses, and engagement)
-      const wordsPerMinute = 150;
+      // 100 WPM for children's stories read aloud with expression and pauses
+      const wordsPerMinute = 100;
       const minutes = Math.ceil(wordCount / wordsPerMinute);
 
       return Math.max(1, minutes); // Minimum 1 minute
