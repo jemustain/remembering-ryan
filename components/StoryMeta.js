@@ -29,9 +29,8 @@ export default function StoryMeta({ author = 'Julie' }) {
       const words = cleanContent.split(' ').filter(word => word.length > 0);
       const wordCount = words.length;
 
-      // Reading speed for children's stories: 150 words per minute
-      // (accounts for expressive reading, pauses, and engagement)
-      const wordsPerMinute = 150;
+      // 100 WPM for children's stories read aloud with expression and pauses
+      const wordsPerMinute = 100;
       const minutes = Math.ceil(wordCount / wordsPerMinute);
 
       return Math.max(1, minutes); // Minimum 1 minute
@@ -84,6 +83,16 @@ export default function StoryMeta({ author = 'Julie' }) {
                 fillRule="evenodd" 
                 d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" 
                 clipRule="evenodd" 
+              />
+            </svg>
+            <span>{readingTime} min read</span>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+Rule="evenodd" 
               />
             </svg>
             <span>{readingTime} min read</span>

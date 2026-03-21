@@ -51,7 +51,6 @@ export default function RootLayout({
                 <div className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
                   <div className="hidden sm:flex items-center space-x-1">
                     <a href="/" className="nav-link">Home</a>
-                    <a href="/stories" className="nav-link">Stories</a>
                     <a href="/about" className="nav-link">About</a>
                     <a href="/submit-story" className="nav-link">Submit Story</a>
                   </div>
