@@ -52,7 +52,6 @@ export default function RootLayout({
                   <div className="hidden sm:flex items-center space-x-1">
                     <a href="/" className="nav-link">Home</a>
                     <a href="/about" className="nav-link">About</a>
-                    <a href="/submit-story" className="nav-link">Submit Story</a>
                   </div>
                   
                   <MobileMenu />

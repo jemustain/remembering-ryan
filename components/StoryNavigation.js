@@ -78,7 +78,7 @@ export default function StoryNavigation({ currentSlug }) {
       ) : <div />}
 
       <Link
-        href="/stories"
+        href="/"
         className="text-stone-500 hover:text-stone-700 transition-colors text-sm"
       >
         All Stories

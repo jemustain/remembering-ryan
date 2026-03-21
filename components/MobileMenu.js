@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/submit-story', label: 'Submit Story' },
 ]
 
 export default function MobileMenu() {

@@ -89,8 +89,11 @@ export default function HomePage() {
         <h1 className="text-4xl sm:text-5xl font-bold text-stone-900 mb-2" style={{fontFamily: "'Allura', 'Dancing Script', cursive"}}>
           Remembering Ryan
         </h1>
-        <p className="text-stone-600 text-lg mb-6">
-          Ryan William Alf &middot; October 10, 1985 &ndash; April 28, 2022
+        <p className="text-stone-600 text-lg mb-1">
+          Ryan William Alf
+        </p>
+        <p className="text-stone-500 text-base mb-6">
+          October 10, 1985 &ndash; April 28, 2022
         </p>
         <p className="text-stone-700 text-lg max-w-2xl mx-auto leading-relaxed px-4">
           Ryan wasn&apos;t one for big speeches or flowery words. But he showed up. He fixed what was broken. He worked hard to give us a good life. That&apos;s the kind of love worth remembering.
