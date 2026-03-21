@@ -92,13 +92,3 @@ export default function StoryMeta({ author = 'Julie' }) {
     </div>
   );
 }
-Rule="evenodd" 
-              />
-            </svg>
-            <span>{readingTime} min read</span>
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
