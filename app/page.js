@@ -37,7 +37,7 @@ const storyExcerpts = {
   '04-dinner-surprise': 'Ryan was working a roofing job a couple hours away. He realized Julie\'s house was closer than his hotel.',
   '05-wood-stove': 'Julie had an old cast iron wood stove she\'d never used. Ryan figured they should get it going before winter.',
   '06-balto-fleas': 'Balto couldn\'t stop scratching. Ryan checked his fur and found little black specks moving around.',
-  '07-christmas-with-the-family': 'Ryan brought Julie to meet his family for the first time. Grammy Billie was hosting Christmas dinner.',
+  '07-christmas-with-the-family': 'Ryan brought Julie to meet his family for the first time. His mom Billie was hosting Christmas dinner.',
   '08-girlfriend-at-work': 'Ryan had several landscaping jobs lined up and only one employee available. So he brought Julie along to help.',
   '09-the-baby': 'The day after Christmas, Julie took a pregnancy test. It was positive.',
   '10-picture-day': 'Julie wanted maternity photos. Ryan wasn\'t into posing for pictures, but he could tell it mattered to her.',

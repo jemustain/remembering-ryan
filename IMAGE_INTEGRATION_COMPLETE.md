@@ -28,7 +28,7 @@
 - **04-dinner-surprise**: Dinner table, cooking in kitchen
 - **05-wood-stove**: Wood burning stove, stack of firewood
 - **06-balto-fleas**: Vet visit, dog bath
-- **07-grammys-christmas**: Christmas family, Christmas tree
+- **07-christmas-with-the-family**: Christmas family, Christmas tree
 
 ### Stories 08-14
 - **08-girlfriend-at-work**: Office workplace

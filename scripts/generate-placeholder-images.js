@@ -36,7 +36,7 @@ const STORY_IMAGES = {
     { filename: 'vet-visit.jpg', alt: 'Dog at veterinarian', seed: 601 },
     { filename: 'dog-bath.jpg', alt: 'Dog getting a bath', seed: 602 }
   ],
-  '07-grammys-christmas': [
+  '07-christmas-with-the-family': [
     { filename: 'christmas-family.jpg', alt: 'Christmas family celebration', seed: 701 },
     { filename: 'christmas-tree.jpg', alt: 'Decorated Christmas tree', seed: 702 }
   ],

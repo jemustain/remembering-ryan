@@ -394,7 +394,7 @@ Please adjust language per STORY_STYLE_GUIDE.md:
 **Solution**: Suggest adding context section
 ```markdown
 Consider adding a "Family Notes" section at the end:
-- Explain who Grammy was (Ryan's grandmother)
+- Explain who Billie was (Ryan's mom)
 - Mention this was shortly after you met
 - Add any context that helps Ryan's son understand
 ```
