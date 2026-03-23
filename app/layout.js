@@ -71,15 +71,9 @@ export default function RootLayout({
           
           <footer className="bg-cream-50 border-t border-cream-300 mt-8 sm:mt-16">
             <div className="max-w-4xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8 text-center">
-              <blockquote className="text-lg sm:text-xl italic text-stone-600 mb-6 leading-relaxed" style={{fontFamily: "var(--font-crimson), 'Crimson Text', Georgia, serif"}}>
-                &ldquo;He showed up. He fixed what was broken. He worked hard to give us a good life.&rdquo;
-              </blockquote>
               <div className="w-16 h-px bg-gold-400 mx-auto mb-4"></div>
-              <p className="text-stone-500 text-sm sm:text-base">
-                In loving memory of Ryan William Alf
-              </p>
               <p className="text-stone-400 text-xs sm:text-sm mt-1">
-                Made with love for his family &bull; {new Date().getFullYear()}
+                Made with Love &bull; {new Date().getFullYear()}
               </p>
             </div>
           </footer>
