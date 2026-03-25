@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import MosaicHero from '../components/MosaicHero'
+
 
 const storyImages = {
   '01-first-date': '/images/stories/01-first-date/hero.jpg',
@@ -71,8 +71,18 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Mosaic hero with scroll-driven reveal */}
-      <MosaicHero />
+      {/* Full-width mosaic hero */}
+      <div className="relative w-screen -ml-[calc((100vw-100%)/2)] h-72 sm:h-96 md:h-[28rem] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/mosaic/mosaic-hero.jpg"
+          alt="A photo mosaic portrait of Ryan and Julie"
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-cream-100" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream-100 to-transparent" />
+      </div>
 
       {/* Intro */}
       <div className="text-center -mt-8 relative z-10 mb-12">
