@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 
 export default function MosaicHero() {
   const containerRef = useRef(null)
@@ -12,9 +11,7 @@ export default function MosaicHero() {
       if (!containerRef.current) return
       const rect = containerRef.current.getBoundingClientRect()
       const containerHeight = rect.height
-      // How far the top of the container has scrolled above viewport top
       const scrolled = -rect.top
-      // Start blending after 20% scroll, fully blended at 80%
       const start = containerHeight * 0.15
       const end = containerHeight * 0.75
       const progress = Math.max(0, Math.min(1, (scrolled - start) / (end - start)))
@@ -22,39 +19,31 @@ export default function MosaicHero() {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Initial check
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <div ref={containerRef} className="relative w-screen -ml-[calc((100vw-100%)/2)]">
-      {/* Mosaic hero - tall to give scroll room */}
       <div className="relative h-[85vh] min-h-[500px] max-h-[900px] overflow-hidden">
         {/* Layer 1: Pure mosaic (individual photos visible) */}
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/images/mosaic/mosaic-pure.jpg"
           alt="A mosaic of memories"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-          quality={90}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
         />
 
         {/* Layer 2: Blended mosaic (portrait revealed) - fades in on scroll */}
-        <div
-          className="absolute inset-0 transition-none"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/mosaic/mosaic-blended.jpg"
+          alt="Ryan and Julie together"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           style={{ opacity: blendOpacity }}
-        >
-          <Image
-            src="/images/mosaic/mosaic-blended.jpg"
-            alt="Ryan and Julie together"
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
-            quality={90}
-          />
-        </div>
+          loading="eager"
+        />
 
         {/* Subtle dark overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
