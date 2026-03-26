@@ -23,6 +23,27 @@ const crimsonText = Crimson_Text({
 export const metadata = {
   title: 'Remembering Ryan - Memorial Website',
   description: 'A memorial website for Ryan William Alf featuring stories for his son',
+  openGraph: {
+    title: 'Remembering Ryan',
+    description: 'Stories about Ryan William Alf (1985–2022), written for his son — so he can know his dad the way we did.',
+    url: 'https://remembering-ryan.vercel.app',
+    siteName: 'Remembering Ryan',
+    images: [
+      {
+        url: 'https://remembering-ryan.vercel.app/images/mosaic/mosaic-hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'A photo mosaic portrait of Ryan and Julie',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Remembering Ryan',
+    description: 'Stories about Ryan William Alf (1985–2022), written for his son.',
+    images: ['https://remembering-ryan.vercel.app/images/mosaic/mosaic-hero.jpg'],
+  },
 }
 
 export default function RootLayout({

@@ -26,7 +26,7 @@ const STORY_ORDER = [
   '21-easter-eggs',
   '22-birthday',
   '23-20-week-ultrasound',
-  '24-the-death',
+  '24-saying-goodbye',
 ]
 
 const STORY_TITLES = {
@@ -53,7 +53,7 @@ const STORY_TITLES = {
   '21-easter-eggs': 'Easter Eggs',
   '22-birthday': 'Birthday',
   '23-20-week-ultrasound': '20 Week Ultrasound',
-  '24-the-death': 'The Death',
+  '24-saying-goodbye': 'Saying Goodbye',
 }
 
 export default function StoryNavigation({ currentSlug }) {
