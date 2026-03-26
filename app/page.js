@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { isFamilyStory } from '../components/FamilyOnly'
 
 
 const storyImages = {
@@ -28,7 +29,7 @@ const storyImages = {
   '21-easter-eggs': '/images/stories/21-easter-eggs/hero.jpg',
   '22-birthday': '/images/stories/22-birthday/hero.jpg',
   '23-20-week-ultrasound': '/images/stories/23-20-week-ultrasound/hero.jpg',
-  '24-the-death': '/images/stories/24-the-death/hero.jpg',
+  '24-saying-goodbye': '/images/stories/24-the-death/hero.jpg',
 }
 
 const storyExcerpts = {
@@ -55,7 +56,7 @@ const storyExcerpts = {
   '21-easter-eggs': 'Easter weekend, four months pregnant. Ryan picked up egg-dyeing kits from WinCo on his way home.',
   '22-birthday': 'Julie\'s 29th birthday, five months pregnant. Ryan showed up with a big bouquet of purple flowers.',
   '23-20-week-ultrasound': 'The big anatomy scan at 3pm. Ryan was at a job site installing a fence when he checked his watch — 2:30.',
-  '24-the-death': 'Years before they met, Ryan had an electrical accident at work that damaged his heart.',
+  '24-saying-goodbye': 'Years before they met, Ryan had an electrical accident at work that damaged his heart.',
 }
 
 export default function HomePage() {
@@ -126,6 +127,13 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-br from-forest-600 to-amber-400" />
                   )}
                   <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/30 to-transparent" />
+                  {isFamilyStory(story.slug) && (
+                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-1.5 shadow-sm" title="Family only">
+                      <svg className="w-4 h-4 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-gray-900 group-hover:text-forest-600 transition-colors mb-2">
