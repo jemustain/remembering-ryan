@@ -29,7 +29,7 @@ const storyImages = {
   '21-easter-eggs': '/images/stories/21-easter-eggs/hero.jpg',
   '22-birthday': '/images/stories/22-birthday/hero.jpg',
   '23-20-week-ultrasound': '/images/stories/23-20-week-ultrasound/hero.jpg',
-  '24-saying-goodbye': '/images/stories/24-the-death/hero.jpg',
+  '24-saying-goodbye': '/images/stories/24-saying-goodbye/hero.jpg',
 }
 
 const storyExcerpts = {
